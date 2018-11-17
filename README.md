@@ -17,4 +17,12 @@ eg:``` git clone https://github.com/jeswincyriac/organ_donation_app.git ```.
 2.```cd accounts/templates```
 3.open home.html ;-)
 
+## pushing changes
+```
+git add .
+git commit -m "message"
+git push origin master 
+```
+goto your profile and send a pull request.
+
 # Acknowledgements
