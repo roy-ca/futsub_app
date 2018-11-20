@@ -59,6 +59,20 @@
 			display: inline-block;
 			padding-left: 50px;
 		}
+		#textbox3{
+			padding-right: 60px;
+			display: inline-block;
+			padding-left: 5px;
+			padding-top: 10px;
+
+		}
+		#textbox4{
+			padding-right: 60px;
+			display: inline-block;
+			padding-left: 5px;
+			padding-top: 20px;
+
+		}
 	</style>
 </head>
 <body>
@@ -68,11 +82,14 @@
 			<div class="one">
 				<h2>Channel1:
 					<select class ="box1" name="Channel1">
-						<option value="pundipie">
-							PundiPie
+						<option value="pewdiepie">
+							PewdiePie
 						</option>
 						<option value="tseries">
 							T-series
+						</option>
+						<option value="coldplay">
+							coldplay
 						</option>
 					</select>
 				</h2>
@@ -80,23 +97,78 @@
 			<div class="two">
 				<h2>Channel2:
 					<select class="box2" name="Channel2">
-						<option value="pundipie">
-							PundiPie
+						<option value="pewdiepie">
+							PewdiePie
 						</option>
 						<option value="tseries">
 							T-series
 						</option>
+						<option value="coldplay">
+							coldplay
+						</option>
 					</select>
 				</h2>
+				<button type="button"  onclick="fntion()">Click Me!</button>
 			</div>
 		</form>
 		<form class="yofoll">
 			<h3 id="textbox1">Channel 1 Suscribers:
-				<input type="text" name="suscribers1">
+				{{ no_subs1 }}
 			</h3>
 				<h3 id="textbox2">Channel 2 Suscribers:
-				<input type="text" name="suscribers2">
+				{{ no_subs2 }}
 			    </h3>
+				<h3 id="textbox3">Channel 1 Average viewers:
+					{{ no_subs1 }}
+				</h3>
+				<h3 id="textbox4">Channel 2 Average Viewers:
+				{{ no_subs2 }}
+			    </h3>
+
 		</form>
+<script >
+
+function fntion()
+{
+	console.log("button clicked");
+	var e1 = document.getElementById("Channel1");
+    var channel1 = e1.options[e1.selectedIndex].text;
+
+	var e2 = document.getElementById("Channel2");
+    var channel2 = e2.options[e2.selectedIndex].text;
+    console.log(e1)
+	console.log(e2);
+  /*fetch('http://localhost:8000/accounts/clicked',{
+    method:'post',
+    body:{"channel1":channel1,"channel2":channel2}})
+
+  //console.log("fetched");
+  .then((res) => res.json()).then((data) =>
+  {
+    console.log(data);
+    console.log(data.data);
+    var reobj=JSON.parse(data.data);
+    console.log(reobj);
+
+   /* var parent = document.getElementById("div1");
+    var child = document.getElementById("answer");
+    parent.removeChild(child);
+    var para = document.createElement("p");
+    var node =*/ //document.getElementById("answer").innerHTML="Firstname:"+reobj.firstname+"\nLastname:"+reobj.lastname+"\nEmail:"+reobj.email+"\nTel No:"+reobj.usrtel+"\ngender:"+reobj.gender;
+    /*para.appendChild(node);
+    var element = document.getElementById("div1");
+    element.appendChild(para);
+*/
+
+
+ // }
+//);
+
+    //console.log(jsonObject);
+    //debugger;
+}
+
+</script>
+
 </body>
 </html>
