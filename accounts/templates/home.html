@@ -81,9 +81,9 @@
 		<form class="channels">
 			<div class="one">
 				<h2>Channel1:
-					<select class ="box1" name="Channel1">
+					<select class ="box1" name="Channel1" id="s1">
 						<option value="pewdiepie">
-							PewdiePie
+							pewdiepie
 						</option>
 						<option value="tseries">
 							T-series
@@ -96,9 +96,9 @@
 			</div>
 			<div class="two">
 				<h2>Channel2:
-					<select class="box2" name="Channel2">
+					<select class="box2" name="Channel2" id="s2">
 						<option value="pewdiepie">
-							PewdiePie
+							pewdiepie
 						</option>
 						<option value="tseries">
 							T-series
@@ -131,38 +131,29 @@
 function fntion()
 {
 	console.log("button clicked");
-	var e1 = document.getElementById("Channel1");
+	var e1 = document.getElementById("s1");
     var channel1 = e1.options[e1.selectedIndex].text;
 
-	var e2 = document.getElementById("Channel2");
+	var e2 = document.getElementById("s2");
     var channel2 = e2.options[e2.selectedIndex].text;
-    console.log(e1)
-	console.log(e2);
-  /*fetch('http://localhost:8000/accounts/clicked',{
+    console.log(channel1);
+	console.log(channel2);
+  fetch('http://localhost:8000/accounts/clicked/',{
     method:'post',
-    body:{"channel1":channel1,"channel2":channel2}})
+    body:JSON.stringify({"channel1":channel1,
+	      "channel2":channel2})
+	  })
 
-  //console.log("fetched");
   .then((res) => res.json()).then((data) =>
   {
-    console.log(data);
-    console.log(data.data);
-    var reobj=JSON.parse(data.data);
-    console.log(reobj);
 
-   /* var parent = document.getElementById("div1");
-    var child = document.getElementById("answer");
-    parent.removeChild(child);
-    var para = document.createElement("p");
-    var node =*/ //document.getElementById("answer").innerHTML="Firstname:"+reobj.firstname+"\nLastname:"+reobj.lastname+"\nEmail:"+reobj.email+"\nTel No:"+reobj.usrtel+"\ngender:"+reobj.gender;
-    /*para.appendChild(node);
-    var element = document.getElementById("div1");
-    element.appendChild(para);
-*/
+	document.getElementById("textbox1").innerHTML="Channel 1 Suscribers:"+data["no_subs1"];
+	document.getElementById("textbox2").innerHTML="Channel 2 Suscribers:"+data["no_subs2"];
+    document.getElementById("textbox3").innerHTML="Channel 1 Average viewers:"+data["avg_view1"];
+	document.getElementById("textbox4").innerHTML="Channel 2 Average viewers:"+data["avg_view2"];
 
-
- // }
-//);
+  }
+);
 
     //console.log(jsonObject);
     //debugger;

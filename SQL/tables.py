@@ -7,7 +7,7 @@ c=conn.cursor()
 
 
 
-c.execute("CREATE TABLE youtubers (id INTEGER PRIMARY KEY,channel_name text NOT NULL,no_subs INTEGER,avg_viewers INTEGER)")
+c.execute("CREATE TABLE youtuber (id INTEGER PRIMARY KEY, channel_name text NOT NULL, no_subs INTEGER, avg_viewers INTEGER, future INTEGER)")
 
 
 
