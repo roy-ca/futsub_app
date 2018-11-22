@@ -9,6 +9,10 @@ def home(request):
 
     return render(request,'home.html')
 
+def reg(request):
+    print ("hello")
+    return render(request,'formpage.html')    
+
 @csrf_exempt
 def out(request):
      try:
