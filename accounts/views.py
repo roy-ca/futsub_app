@@ -8,6 +8,17 @@ import json
 def home(request):
 
     return render(request,'home.html')
+def insertrating(request)
+	
+	conn=sqlite3.connect('SQL/Main.db')
+        c=conn.cursor()
+	c.execute("INSERT INTO ratings VALUES(:id,:name,:channel_name,:rating)",{'id':id,'name':name,'channel_name':channel_name,'rating':rating})
+	conn.close()
+def insertcust(request):
+	conn=sqlite3.connect('SQL/Main.db')
+        c=conn.cursor()
+	c.execute("INSERT INTO customer VALUES(:id,:name)",{'id':id,'name':name})
+	conn.close()
 
 @csrf_exempt
 def out(request):
@@ -16,11 +27,12 @@ def out(request):
         print(data["channel1"])
         conn=sqlite3.connect('SQL/Main.db')
         c=conn.cursor()
-
-        channel1subs=c.execute("SELECT no_subs from youtubers where channel_name='"+data["channel1"]+"'").fetchone()
-        channel2subs=c.execute("SELECT no_subs from youtubers where channel_name='"+data["channel2"]+"'").fetchone()
-        avg_view1=c.execute("SELECT avg_viewers from youtubers where channel_name='"+data["channel1"]+"'").fetchone()
-        avg_view2=c.execute("SELECT avg_viewers from youtubers where channel_name='"+data["channel2"]+"'").fetchone()
+	channel1rating=c.execute("SELECT avg(ratings) from ratings where channel_name=")
+	channel2rating=c.execute("SELECT avg(ratings) from ratings where channel_name=")
+        channel1subs=c.execute("SELECT no_subs from channel where channel_name='"+data["channel1"]+"'").fetchone()
+        channel2subs=c.execute("SELECT no_subs from channel where channel_name='"+data["channel2"]+"'").fetchone()
+        avg_view1=c.execute("SELECT avg_viewers from channel where channel_name='"+data["channel1"]+"'").fetchone()
+        avg_view2=c.execute("SELECT avg_viewers from channel where channel_name='"+data["channel2"]+"'").fetchone()
         conn.close()
         print(channel1subs)
         return JsonResponse({'no_subs1': channel1subs[0],'no_subs2':channel2subs[0],'avg_view1':avg_view1[0],'avg_view2':avg_view2[0]})

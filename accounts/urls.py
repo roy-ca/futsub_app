@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     url(r'^$',views.home),
     url(r'clicked/',views.out),
+    url(r'customerreg/',views.insertcust),
 ]
