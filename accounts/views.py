@@ -20,6 +20,10 @@ def insertcust(request):
 	c.execute("INSERT INTO customer VALUES(:id,:name)",{'id':id,'name':name})
 	conn.close()
 
+def reg(request):
+    print ("hello")
+    return render(request,'formpage.html')
+
 @csrf_exempt
 def out(request):
      try:
@@ -36,6 +40,20 @@ def out(request):
         conn.close()
         print(channel1subs)
         return JsonResponse({'no_subs1': channel1subs[0],'no_subs2':channel2subs[0],'avg_view1':avg_view1[0],'avg_view2':avg_view2[0]})
+
+
+     except Exception as e:
+        # To be changed during production
+        print(e)
+        return JsonResponse({'Error': 'Something unexpected happened'}, status=500)
+
+@csrf_exempt
+def regsub(request):
+     try:
+        data = json.loads(request.body.decode("utf-8"))
+        print(data["name"])
+
+        return JsonResponse({'success': "true"})
 
 
      except Exception as e:
