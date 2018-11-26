@@ -52,22 +52,52 @@
 <form class="review">
 	<div id=text1>
 		<h3 id="font1">User Name:</h3>
-		<input type="text" name="name">
+		<input type="text" name="name" id="name">
 		</input>
 	</div>
 	<div id="text2">
 		<h3 id="font2">Channel Name:</h3>
-		<input type="text" name="channel">
+		<input type="text" name="channel" id="channel">
 		</input>
 	</div>
 	<div id="text3">
 		<h3 id="font3">Review:</h3>
-		<input type="text" name="review">
+		<input type="text" name="review" id ="review">
 		</input>
 	</div>
 	<div class="wrapper">
-		<button id="button">Submit</button>
+		<button id="button" onclick="fntion()">Submit</button>
 	</div>
 </form>
+
+<script >
+
+function fntion()
+{
+	console.log("button clicked");
+	var e1 = document.getElementById("name").value;
+    var e2 = document.getElementById("channel").value;
+    var e3 = document.getElementById("review").value;
+
+  fetch('http://localhost:8000/accounts/reviewsub/',{
+    method:'post',
+    body:JSON.stringify({"name":e1,
+	      "channel":e2,
+	      "review":e3})
+	  })
+
+  .then((res) => res.json()).then((data) =>
+  {
+
+	document.getElementById("heading").innerHTML="success";
+
+  }
+);
+
+    //console.log(jsonObject);
+    //debugger;
+}
+
+</script>
 </body>
 </html>
